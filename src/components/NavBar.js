@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const NavBar = () => {
     return (
         <b.Navbar bg="light" expand="lg">
-            <b.Navbar.Brand href="#home">Work in Progress</b.Navbar.Brand>
+            <b.Navbar.Brand href="#home">MovieReview</b.Navbar.Brand>
             <b.Navbar.Toggle aria-controls="basic-navbar-nav" />
             <b.Navbar.Collapse id="basic-navbar-nav">
                 <b.Nav className="mr-auto">

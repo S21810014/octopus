@@ -28,26 +28,22 @@ const HomePage = ({apiData}) => {
                             </div>
                     </b.Col>
                 </b.Row>
-                {
-                    apiData.results.reduce((res, val, idx, arr) => {
-                        if(idx % 2 === 0)
-                            res.push(arr.slice(idx, idx + 2))
-                        return res
-                    }, []).map((el, idx) => {
-                            if(keyword.length > 0) {
-                                return <b.Row key={idx}>
-                                    {el[0].display_title.toLowerCase().includes(keyword.toLowerCase()) ? <b.Col><Card title={el[0].display_title} subtitle={el[0].byline} text={el[0].headline} link="More Detail" img={el[0].multimedia.src} idx={idx}/></b.Col> : null}
-                                    {el[1].display_title.toLowerCase().includes(keyword.toLowerCase()) ? <b.Col><Card title={el[1].display_title} subtitle={el[1].byline} text={el[1].headline} link="More Detail" img={el[1].multimedia.src} idx={idx + 1}/></b.Col> : null}
-                                </b.Row>
-                            } else {
-                                return <b.Row key={idx}>
-                                    <b.Col><Card title={el[0].display_title} subtitle={el[0].byline} text={el[0].headline} link="More Detail" img={el[0].multimedia.src} idx={idx}/></b.Col>
-                                    <b.Col><Card title={el[1].display_title} subtitle={el[1].byline} text={el[1].headline} link="More Detail" img={el[1].multimedia.src} idx={idx + 1}/></b.Col>
-                                </b.Row>
+                <b.CardColumns>
+                    {
+                        apiData.results.map((el, idx) => {
+                                if(keyword.length > 0) {
+                                    return <b.Row key={idx}>
+                                        {el.display_title.toLowerCase().includes(keyword.toLowerCase()) ? <b.Col><Card title={el.display_title} subtitle={el.byline} text={el.headline} link="More Detail" img={el.multimedia.src} idx={idx}/></b.Col> : null}
+                                    </b.Row>
+                                } else {
+                                    return <b.Row key={idx}>
+                                        <b.Col><Card title={el.display_title} subtitle={el.byline} text={el.headline} link="More Detail" img={el.multimedia.src} idx={idx}/></b.Col>
+                                    </b.Row>
+                                }
                             }
-                        }
-                    )
-                }
+                        )
+                    }
+                </b.CardColumns>
             </b.Container>
         </div>
     )
